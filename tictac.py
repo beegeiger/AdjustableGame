@@ -7,6 +7,7 @@ game_status = "Unfinished"
 A = ""
 B = ""
 board_size = 0
+score_options = []
 
 def start_game():
   #Function to run game
@@ -41,3 +42,23 @@ def print_board():
   for n in range(board_size):
     print(official_board[(n * board_size): ((n * board_size) + board_size)])
   return
+
+
+def create_options(board):
+  options = []
+  diag1 = []
+  diag2 = []
+  for n in range(board_size):
+    column = []
+    options.append(board[(n * board_size): ((n * board_size) + board_size)])
+    diag1.append(board[n * (board_size + 1)])
+    diag2.append(board[n * (board_size - 1)])
+    for p in range(board_size):
+      column.append(board[(p * board_size) + n])
+    options.append(column)
+  options.append(diag1)
+  options.append(diag2)
+  score_options = options
+  return
+
+def check_state(board):
