@@ -10,7 +10,7 @@ board_size = 0
 score_options = []
 
 def start_game():
-  #Function to run game
+  """Function to run game"""
   print("Hi! Welcome to DB Geiger's new ADJUSTABLE tic tac toe game!")
   input("Press Enter to continue...")
   # Asks the user for the size of the board and sets board_size
@@ -38,13 +38,15 @@ def start_game():
   return
 
 def print_board():
-  #Prints the official board for user
+  """Prints the official board for user"""
+  #Loops through and prints rows of the board
   for n in range(board_size):
     print(official_board[(n * board_size): ((n * board_size) + board_size)])
   return
 
 
 def create_options(board):
+  """Creates an array of all methods to score"""
   options = []
   diag1 = []
   diag2 = []
@@ -73,18 +75,18 @@ def check_state(board):
         return "Tie"
   return "Unfinished"
 
-def check_optiona(board):
+def check_options(board):
   board_copy = []
-  board_copy_copy
+  board_copy_copy = []
   chances = []
   for n in range(board_size):
     chances.append(0)
   for y in range(board_size):
     board_copy = list(board)
     if str(board_copy[y]).isdigit():
-      board_copy = B
+      board_copy[y] = B
       cur_state = check_state(board_copy)
-      multiplier = ((board_size * board_size) - (board.count("X") + board.count("O")))
+      multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))
       if cur_state != "Unfinished":
         if cur_state == "X win" or cur_state == "Y win":
           chances[y] += (50 * multiplier)
@@ -92,3 +94,16 @@ def check_optiona(board):
           chances[y] += (multiplier)
       else:
         for z in range(board_size):
+          board_copy_copy = list(board_copy)
+          if str(board_copy_copy[z]).isdigit():
+            board_copy_copy[z] = A
+            cur_stateB = check_state(board_copy_copy)
+            multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
+            if cur_stateB != "Unfinished":
+              if cur_stateB == "X win" or cur_stateB == "Y win":
+                chances[y] -= (50 * multiplier)
+              else cur_stateB == "Tie":
+                chances[y] += (multiplier)
+            else:
+              chances[y] += sum(check_options(board_copy_copy)
+  return chances
