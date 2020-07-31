@@ -25,7 +25,7 @@ def start_game():
     official_board.append(n + 1)
   #Asks user if they want to be X or 0 and sets variables A and B
   q2 = input("Would you like to be 'X' or 'O'?")
-  q2options = ["X", "x", "O", "x"]
+  q2options = ["X", "x", "O", "o"]
   while q2 not in q2options:
     print("That wasn't a valid selection. Choose X or O.")
     q2 = input("Would you like to be 'X' or 'O'?")
@@ -62,3 +62,13 @@ def create_options(board):
   return
 
 def check_state(board):
+  if score_options == []:
+    create_options(board)
+  for opt in score_options:
+    if opt.count("X") == board_size:
+      return "X win"
+    elif opt.count("O") == board_size:
+      return "O win"
+  if board.count("X") + board.count("O") == (board_size * board_size):
+        return "Tie"
+  return "Unfinished"
