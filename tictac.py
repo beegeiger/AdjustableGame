@@ -72,3 +72,23 @@ def check_state(board):
   if board.count("X") + board.count("O") == (board_size * board_size):
         return "Tie"
   return "Unfinished"
+
+def check_optiona(board):
+  board_copy = []
+  board_copy_copy
+  chances = []
+  for n in range(board_size):
+    chances.append(0)
+  for y in range(board_size):
+    board_copy = list(board)
+    if str(board_copy[y]).isdigit():
+      board_copy = B
+      cur_state = check_state(board_copy)
+      multiplier = ((board_size * board_size) - (board.count("X") + board.count("O")))
+      if cur_state != "Unfinished":
+        if cur_state == "X win" or cur_state == "Y win":
+          chances[y] += (50 * multiplier)
+        else cur_state == "Tie":
+          chances[y] += (multiplier)
+      else:
+        for z in range(board_size):
