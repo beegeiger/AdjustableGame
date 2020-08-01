@@ -9,6 +9,26 @@ B = ""
 board_size = 0
 score_options = []
 
+def run_game():
+  start_game()
+  if B == "X":
+    computer_turn()
+  while game_status == "Unfinished":
+    print("JUST BEFORE USER TURN", offical_board, game_status)
+        user_turn()
+        st = check_state(offical_board)
+        if st != "Unfinished":
+            game_status = st
+            break
+        sleep(1)
+        print("JUST BEFORE COMPUTER TURN", offical_board, game_status)
+        computer_turn()
+        st = check_state(offical_board)
+        if st != "Unfinished":
+            game_status = st
+        sleep(1)
+  return
+
 def start_game():
   """Function to run game"""
   print("Hi! Welcome to DB Geiger's new ADJUSTABLE tic tac toe game!")
@@ -35,6 +55,37 @@ def start_game():
   else:
     A = "O"
     B = "X"
+  return
+
+def user_turn():
+  print("Enter a number 1-9 available on the board.")
+  print_board()
+  val = input()
+  entry_val = False
+  while entry_val == False:
+      if len(val) > 1 or val.isdigit() == False:
+          print("That was not a valid entry. Please enter a number 1-9 available on the board.")
+          val = input()
+      elif offical_board[int(val) - 1] == "X" or offical_board[int(val) - 1] == "O":
+          print("That square has already been taken. Please enter a number 1-9 STILL OPEN on the board.")
+          val = input()
+      else:
+          entry_val = True
+  offical_board[int(val) - 1] = A
+  print("Your Choice: ")
+  print_board()
+  return
+
+def computer_turn():
+  opts = check_options(offical_board)
+  for y in range(board_size * board_size):
+    if str(offical_board[y]).isalpha():
+      opts[y] = -999999999999999999999999999999
+  highest = max(opts)
+  loc = opts.index(highest)
+  offical_board[loc] = B
+  print("Here is my response to your move!")
+  print_board()
   return
 
 def print_board():
