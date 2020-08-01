@@ -15,18 +15,24 @@ def run_game():
     computer_turn()
   while game_status == "Unfinished":
     print("JUST BEFORE USER TURN", offical_board, game_status)
-        user_turn()
-        st = check_state(offical_board)
-        if st != "Unfinished":
-            game_status = st
-            break
-        sleep(1)
-        print("JUST BEFORE COMPUTER TURN", offical_board, game_status)
-        computer_turn()
-        st = check_state(offical_board)
-        if st != "Unfinished":
-            game_status = st
-        sleep(1)
+      user_turn()
+      st = check_state(offical_board)
+      if st != "Unfinished":
+        game_status = st
+        break
+      sleep(1)
+      print("JUST BEFORE COMPUTER TURN", offical_board, game_status)
+      computer_turn()
+      st = check_state(offical_board)
+      if st != "Unfinished":
+        game_status = st
+      sleep(1)
+  if A == "X" and game_status == "X win" or A == "O" and game_status == "O win":
+    print("Congradulations Human, You have bested me!")
+  elif game_status == "Tie":
+    print("Ahh! I guess we are evenly matched! Next time I will get you!")
+  else:
+    print("Hahahah human, I have bested you!")
   return
 
 def start_game():
