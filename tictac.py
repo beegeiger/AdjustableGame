@@ -10,6 +10,10 @@ board_size = 0
 score_options = []
 
 def run_game():
+  global official_board
+  global A
+  global B
+  global board_size
   start_game()
   game_status = "Unfinished"
   if B == "X":
@@ -37,7 +41,7 @@ def run_game():
 def start_game():
   """Function to run game"""
   print("Hi! Welcome to DB Geiger's new ADJUSTABLE tic tac toe game!")
-  input("Press Enter to continue...")
+  # input("Press Enter to continue...")
   # Asks the user for the size of the board and sets board_size
   q1 = int(input("How many rows would you like on your board? (3-6)"))
   q1options = [3, 4, 5, 6]
@@ -121,6 +125,7 @@ def create_options(board):
   global A
   global B
   global board_size
+  global score_options
   options = []
   diag1 = []
   diag2 = []
@@ -139,6 +144,7 @@ def create_options(board):
 
 
 def check_state(board):
+  
   global board_size
   if score_options == []:
     create_options(board)
@@ -152,14 +158,13 @@ def check_state(board):
   return "Unfinished"
 
 def check_options(board):
-  global official_board
   global A
   global B
   global board_size
   board_copy = []
   board_copy_copy = []
   chances = []
-  for n in range(board_size):
+  for n in range(board_size * board_size):
     chances.append(0)
   for y in range(board_size):
     board_copy = list(board)
