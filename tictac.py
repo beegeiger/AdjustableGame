@@ -194,7 +194,7 @@ def check_options(board):
   for n in range(board_size * board_size):
     print("Print 8.3")
     chances.append(0)
-  for y in range(board_size):
+  for y in range(board_size * board_size):
     print("Print 8.4")
     board_copy = list(board)
     if str(board_copy[y]).isdigit():
