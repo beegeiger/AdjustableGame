@@ -199,33 +199,41 @@ def check_options(board):
     # print("Print 8.4")
     board_copy = list(board)
     if str(board_copy[y]).isdigit():
-      # print("Print 8.5")
+      print("Print 8.5", board_copy)
       board_copy[y] = B
       cur_state = check_state(board_copy)
       multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))
+      multiplier = multiplier * multiplier
       if cur_state != "Unfinished":
         # print("Print 8.6")
         if cur_state == "X win" or cur_state == "Y win":
-          chances[y] += (50 * multiplier)
+          print(B, "Win!!!!!!!!!!", board_copy)
+          chances[y] += (100 * multiplier)
         elif cur_state == "Tie":
           chances[y] += (multiplier)
+          print("TIE!!!!", board_copy)
       else:
         # print("Print 8.7")
         for z in range(board_size):
           board_copy_copy = list(board_copy)
+          print("Print 8.75", board_copy_copy)
           if str(board_copy_copy[z]).isdigit():
             # print("Print 8.8")
             board_copy_copy[z] = A
             cur_stateB = check_state(board_copy_copy)
             multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
+            multiplier = multiplier * multiplier
             # print("Print 8.9")
             if cur_stateB != "Unfinished":
               if cur_stateB == "X win" or cur_stateB == "Y win":
-                chances[y] -= (50 * multiplier)
+                print(A, "Win!!!!!!!!!!", board_copy_copy)
+                chances[y] -= (1 * multiplier)
               elif cur_stateB == "Tie":
                 chances[y] += (multiplier)
+                print("TIE!!!!", board_copy_copy)
             else:
               chances[y] += sum(check_options(board_copy_copy))
+  print("Chances: ", chances)
   return chances
 
 run_game()
