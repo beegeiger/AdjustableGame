@@ -137,10 +137,6 @@ def print_board():
 
 def create_options(board):
   """Creates an array of all methods to score"""
-  global official_board
-  global A
-  global B
-  global board_size
   global score_options
   print("Print 6.1")
   options = []
@@ -149,12 +145,14 @@ def create_options(board):
   print("Print 6.2")
   for n in range(board_size):
     column = []
-    options.append(board[(n * board_size): ((n * board_size) + board_size)])
-    diag1.append(board[n * (board_size + 1)])
-    diag2.append(board[(n + 1) * (board_size - 1)])
+    row = []
+    diag1.append(n * (board_size + 1))
+    diag2.append((n + 1) * (board_size - 1))
     for p in range(board_size):
-      column.append(board[(p * board_size) + n])
+      row.append((n * board_size) + p)
+      column.append((p * board_size) + n)
     options.append(column)
+    options.append(row)
   print("Print 6.3")
   options.append(diag1)
   options.append(diag2)
@@ -167,19 +165,22 @@ def check_state(board):
   print("Print 7.1")
   global score_options
   global board_size
-  create_options(board)
+  if score_options == []:
+    create_options(board)
   print("Print 7.2")
   for opt in score_options:
-    print("Print 7.21", opt)
-    if opt.count("X") == board_size:
+    option = []
+    for z in opt:
+      option.append(board[z])
+    if option.count("X") == board_size:
       print("Print 7.22")
       return "X win"
-    elif opt.count("O") == board_size:
+    elif option.count("O") == board_size:
       print("Print 7.25")
       return "O win"
   print("Print 7.3")
   if board.count("X") + board.count("O") == (board_size * board_size):
-        return "Tie"
+    return "Tie"
   return "Unfinished"
 
 def check_options(board):
