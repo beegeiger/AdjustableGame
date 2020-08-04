@@ -162,63 +162,63 @@ def create_options(board):
 
 
 def check_state(board):
-  print("Print 7.1")
+  # print("Print 7.1")
   global score_options
   global board_size
   if score_options == []:
     create_options(board)
-  print("Print 7.2")
+  # print("Print 7.2")
   for opt in score_options:
     option = []
     for z in opt:
       option.append(board[z])
     if option.count("X") == board_size:
-      print("Print 7.22")
+      # print("Print 7.22")
       return "X win"
     elif option.count("O") == board_size:
-      print("Print 7.25")
+      # print("Print 7.25")
       return "O win"
-  print("Print 7.3")
+  # print("Print 7.3")
   if board.count("X") + board.count("O") == (board_size * board_size):
     return "Tie"
   return "Unfinished"
 
 def check_options(board):
-  print("Print 8.1")
+  # print("Print 8.1")
   global A
   global B
   global board_size
   board_copy = []
   board_copy_copy = []
   chances = []
-  print("Print 8.2")
+  # print("Print 8.2")
   for n in range(board_size * board_size):
-    print("Print 8.3")
+    # print("Print 8.3")
     chances.append(0)
   for y in range(board_size * board_size):
-    print("Print 8.4")
+    # print("Print 8.4")
     board_copy = list(board)
     if str(board_copy[y]).isdigit():
-      print("Print 8.5")
+      # print("Print 8.5")
       board_copy[y] = B
       cur_state = check_state(board_copy)
       multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))
       if cur_state != "Unfinished":
-        print("Print 8.6")
+        # print("Print 8.6")
         if cur_state == "X win" or cur_state == "Y win":
           chances[y] += (50 * multiplier)
         elif cur_state == "Tie":
           chances[y] += (multiplier)
       else:
-        print("Print 8.7")
+        # print("Print 8.7")
         for z in range(board_size):
           board_copy_copy = list(board_copy)
           if str(board_copy_copy[z]).isdigit():
-            print("Print 8.8")
+            # print("Print 8.8")
             board_copy_copy[z] = A
             cur_stateB = check_state(board_copy_copy)
             multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
-            print("Print 8.9")
+            # print("Print 8.9")
             if cur_stateB != "Unfinished":
               if cur_stateB == "X win" or cur_stateB == "Y win":
                 chances[y] -= (50 * multiplier)
