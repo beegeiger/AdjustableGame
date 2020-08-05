@@ -202,42 +202,42 @@ def check_options(board):
     # print("Print 8.4")
     loop_num += 1
     board_copy = list(board)
-    print("LOOP NUMBER: ", loop_num, y, board_copy[y], B, board_copy)
+    # print("LOOP NUMBER: ", loop_num, y, board_copy[y], B, board_copy)
     if str(board_copy[y]).isdigit():
       # print("Print 8.5", board_copy)
       board_copy[y] = B
       print("Print 8.55", board_copy, y, chances)
       cur_state = check_state(board_copy)
-      multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))**2
+      multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))
       if cur_state != "Unfinished":
         # print("Print 8.6")
-        if cur_state == "X win" or cur_state == "Y win":
+        if cur_state == "X win" or cur_state == "O win":
           print(B, "Win!!!!!!!!!!", board_copy, y, multiplier, chances)
           chances[y] += (100 * multiplier)
           print(B, "Win!!!2222222", board_copy, y, multiplier, chances)
         elif cur_state == "Tie":
-          chances[y] += (multiplier)
+          chances[y] += 1
           print("TIE!!!!", board_copy, y, multiplier, chances)
       else:
         # print("Print 8.7")
         for z in range(board_size):
           loop_num += 1
           board_copy_copy = list(board_copy)
-          print("LOOP NUMBER: ", loop_num, y, board_copy_copy[y], A, board_copy_copy)
+          # print("LOOP NUMBER: ", loop_num, y, board_copy_copy[y], A, board_copy_copy)
           # print("Print 8.75", board_copy_copy)
           if str(board_copy_copy[z]).isdigit():
             # print("Print 8.8")
             board_copy_copy[z] = A
             cur_stateB = check_state(board_copy_copy)
-            multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))**2
+            multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
             # print("Print 8.9")
             if cur_stateB != "Unfinished":
-              if cur_stateB == "X win" or cur_stateB == "Y win":
+              if cur_stateB == "X win" or cur_stateB == "O win":
                 print(A, "Win!!!!!!!!!!", board_copy_copy, y, multiplier, chances)
-                chances[y] -= (1 * multiplier)
+                chances[y] -= (100 * multiplier)
                 print(A, "Win!!!!22222", board_copy_copy, y, multiplier, chances)
               elif cur_stateB == "Tie":
-                chances[y] += (multiplier)
+                chances[y] += 1
                 print("TIE!!!!", board_copy_copy, y, multiplier, chances)
             else:
               chances[y] += sum(check_options(board_copy_copy))
