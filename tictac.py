@@ -220,7 +220,7 @@ def check_options(board):
           print("TIE!!!!", board_copy, y, multiplier, chances)
       else:
         # print("Print 8.7")
-        for z in range(board_size):
+        for z in range(board_size * board_size):
           loop_num += 1
           board_copy_copy = list(board_copy)
           # print("LOOP NUMBER: ", loop_num, y, board_copy_copy[y], A, board_copy_copy)
