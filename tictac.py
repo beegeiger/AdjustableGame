@@ -7,6 +7,7 @@ game_status = "Unfinished"
 A = ""
 B = ""
 board_size = 0
+board_total = 0
 score_options = []
 
 def run_game():
@@ -55,7 +56,9 @@ def start_game():
     q1 = input("How many rows would you like on your board? (3-6)")
   # print("Print 2.2")
   global board_size
+  global board_total
   board_size = q1
+  board_total = board_size * board_size
   #With board_size, creates the squares on official_board
   global official_board
   # print("Print 2.3")
@@ -165,6 +168,7 @@ def check_state(board):
   # print("Print 7.1")
   global score_options
   global board_size
+  global board_total
   if score_options == []:
     create_options(board)
   # print("Print 7.2")
@@ -178,8 +182,9 @@ def check_state(board):
     elif option.count("O") == board_size:
       # print("Print 7.25")
       return "O win"
+    elif option.count("X")
   # print("Print 7.3")
-  if board.count("X") + board.count("O") == (board_size * board_size):
+  if board.count("X") + board.count("O") == (board_total):
     return "Tie"
   return "Unfinished"
 
@@ -190,15 +195,16 @@ def check_options(board):
   global A
   global B
   global board_size
+  global board_total
   global loop_num
   board_copy = []
   board_copy_copy = []
   chances = []
   # print("Print 8.2")
-  for n in range(board_size * board_size):
+  for n in range(board_total):
     # print("Print 8.3")
     chances.append(0)
-  for y in range(board_size * board_size):
+  for y in range(board_total):
     # print("Print 8.4")
     loop_num += 1
     board_copy = list(board)
@@ -208,7 +214,7 @@ def check_options(board):
       board_copy[y] = B
       # print("Print 8.55", board_copy, y, chances)
       cur_state = check_state(board_copy)
-      multiplier = ((board_size * board_size) - (board_copy.count("X") + board_copy.count("O")))
+      multiplier = ((board_total) - (board_copy.count("X") + board_copy.count("O")))
       if cur_state != "Unfinished":
         # print("Print 8.6")
         if cur_state == "X win" or cur_state == "O win":
@@ -220,7 +226,7 @@ def check_options(board):
           # print("TIE!!!!", board_copy, y, multiplier, chances)
       else:
         # print("Print 8.7")
-        for z in range(board_size * board_size):
+        for z in range(board_total):
           loop_num += 1
           board_copy_copy = list(board_copy)
           # print("LOOP NUMBER: ", loop_num, y, board_copy_copy[y], A, board_copy_copy)
@@ -229,7 +235,7 @@ def check_options(board):
             # print("Print 8.8")
             board_copy_copy[z] = A
             cur_stateB = check_state(board_copy_copy)
-            multiplier = ((board_size * board_size) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
+            multiplier = ((board_total) - (board_copy_copy.count("X") + board_copy_copy.count("O")))
             # print("Print 8.9")
             if cur_stateB != "Unfinished":
               if cur_stateB == "X win" or cur_stateB == "O win":
