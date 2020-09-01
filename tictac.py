@@ -182,7 +182,14 @@ def check_state(board):
     elif option.count("O") == board_size:
       # print("Print 7.25")
       return "O win"
-    elif option.count("X")
+    elif option.count("X") == board_size - 1 and option.count("O") == 0:
+      for o in option:
+        if o != "X":
+          return ["X endgame", o]
+    elif option.count("O") == board_size - 1 and option.count("X") == 0:
+      for p in option:
+        if p != "O":
+          return ["O endgame", p]
   # print("Print 7.3")
   if board.count("X") + board.count("O") == (board_total):
     return "Tie"
